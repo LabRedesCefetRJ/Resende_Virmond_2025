@@ -17,7 +17,7 @@ pythonENV/
 .DS_Store
 .atom/
 .buildlog/
-.history
+.historyf
 .svn/
 
 # IntelliJ related
@@ -65,7 +65,6 @@ analysis_benchmark.json
 .pub-preload-cache/
 .pub-cache/
 .pub/
-build/
 flutter_*.png
 linked_*.ds
 unlinked.ds
@@ -99,7 +98,7 @@ unlinked_spec.ds
 **/ios/**/profile
 **/ios/**/xcuserdata
 **/ios/.generated/
-**/ios/Flutter/.last_build_id
+
 **/ios/Flutter/App.framework
 **/ios/Flutter/Flutter.framework
 **/ios/Flutter/Flutter.podspec

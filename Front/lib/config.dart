@@ -12,5 +12,5 @@ class Config {
   static List<ButtonData> listButton = [
   ButtonData(label: "RJ", id: 0 , enumReport: EnumReport.domain),
 ];
-  static String backend = "http://localhost:3001/api";
+  static String backend = "https://bsi.cefet-rj.br/api_observatorio";
 }

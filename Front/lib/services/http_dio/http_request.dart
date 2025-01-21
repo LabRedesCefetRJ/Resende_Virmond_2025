@@ -26,6 +26,8 @@ class HttpRequest {
   }) async {
     back = Config.backend;
 
+    print(back);
+
     late Response response;
 
     try {
