@@ -41,7 +41,7 @@ class PageModel {
         'Nota': PlutoCell(value: nota?.toStringAsFixed(2)),
         'Violações': PlutoCell(value: violacoes),
         'Elementos Afetados': PlutoCell(value: elementosAfetados),
-        'Elementos Testados': PlutoCell(value: elementosAfetados),
+        'Elementos Testados': PlutoCell(value: elementosTestados),
       },
     );
   }

@@ -32,6 +32,10 @@ class _InfoHomeState extends State<InfoHome> {
 
   @override
   Widget build(BuildContext context) {
+
+    final double hg = MediaQuery.of(context).size.height;
+
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -50,11 +54,11 @@ class _InfoHomeState extends State<InfoHome> {
                 style: MyStyles.subBoldBlack,
               ),
             ),
-            const SizedBox(height: 16),
+             SizedBox(height: hg / 50),
 
             // Informações principais
             Wrap(
-              spacing: 16,
+              spacing: hg / 50,
               runSpacing: 8,
               children: [
                 _buildInfoItem("$domainCount Sites de prefeitura avaliados"),
@@ -63,7 +67,7 @@ class _InfoHomeState extends State<InfoHome> {
               ],
             ),
 
-            const SizedBox(height: 20),
+             SizedBox(height: hg/40),
 
             // Relatórios detalhados • centralizado
             Center(
@@ -72,11 +76,11 @@ class _InfoHomeState extends State<InfoHome> {
                 style: MyStyles.subBoldBlack,
               ),
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: hg/90),
 
             // Lista de relatórios
             Wrap(
-              spacing: 16,
+              spacing: hg / 50,
               runSpacing: 8,
               children: [
                 _buildInfoItem("Páginas do portal municipal"),
@@ -85,7 +89,7 @@ class _InfoHomeState extends State<InfoHome> {
                 _buildInfoItem("Filtros e gráficos personalizados"),
               ],
             ),
-            const SizedBox(height: 16),
+             SizedBox(height: hg / 50),
 
             // Botão "Ver Relatório" • centralizado
             Center(
@@ -95,11 +99,11 @@ class _InfoHomeState extends State<InfoHome> {
                   widget.onUpdate();
                 },
                 child: Container(
-                  height: 50,
+                  height: hg / 15,
                   width: 180,
                   decoration: BoxDecoration(
                     color: Colors.blue.shade700,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(
                     child: Text(
@@ -121,7 +125,7 @@ class _InfoHomeState extends State<InfoHome> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("• ", style: TextStyle(fontSize: 16)),
+        const Text("• ", style: TextStyle(fontSize: 12)),
         Expanded(
           child: Text(
             text,

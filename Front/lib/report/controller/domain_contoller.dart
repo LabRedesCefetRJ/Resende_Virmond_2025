@@ -107,7 +107,7 @@ class DomainController implements IReportController {
       PlutoColumn(
           title: "Nota",
           field: "Nota",
-          type: PlutoColumnType.number(locale: "pt_Br", format: "#,##0.00"),
+          type: PlutoColumnType.number(format:'#.##' ),
           width: 150),
       PlutoColumn(
         title: "Total de Páginas",

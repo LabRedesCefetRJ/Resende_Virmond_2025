@@ -87,7 +87,7 @@ class PageController implements IReportController {
       PlutoColumn(
         title: "Nota",
         field: "Nota",
-        type: PlutoColumnType.number(locale: "pt_BR", format: "#,##0.00"),
+        type: PlutoColumnType.number(format:'#.##'),
         width: 100,
       ),
       PlutoColumn(

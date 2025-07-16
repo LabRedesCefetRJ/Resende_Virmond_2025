@@ -7,7 +7,9 @@ import 'package:accessibility_audit/library/pluto_grid_export/src/pluto_grid_plu
 import 'package:accessibility_audit/library/pluto_grid/pluto_grid_plus.dart';
 import 'package:accessibility_audit/library/pluto_grid_export/pluto_grid_plus_export.dart';
 import 'package:accessibility_audit/library/pluto_grid_export/src/pluto_grid_plus_export.dart';
+import 'package:flutter/material.dart';
 import '../../../../services/file_save/save_file.dart';
+import 'package:pdf/src/widgets/theme.dart' as theme;
 
 class ExportPlutoGrid {
   
@@ -17,21 +19,43 @@ class ExportPlutoGrid {
     FileSaveHelper.saveAndLaunchFile(exported, "Observatório de Acessibilidade ${DateTime.now().toIso8601String()}.csv");
   }
 
+static void asPdf(PlutoGridStateManager stateManager) async {
+  final themeData = theme.ThemeData.base();
 
-  static void asPdf(PlutoGridStateManager stateManager) async {
-    final themeData = ThemeData.base();
+  // Filtra colunas: remove onde field == "E" e title == ""
+  final newColumns = stateManager.columns.where(
+    (column) => !(column.field == "E" && column.title == ""),
+  ).toList();
 
-    var plutoGridPdfExport = PlutoGridDefaultPdfExport(
-      title: "Observatório de Acessibilidade",
-      creator: "Observatório de Acessibilidade",
-      format: PdfPageFormat.a3.landscape,
-      themeData: themeData,
+  // Filtra células de cada linha removendo a do field "E"
+  final newRows = stateManager.rows.map((row) {
+    final filteredCells = Map.fromEntries(
+      row.cells.entries.where((entry) => entry.key != "E"),
     );
+    return PlutoRow(cells: filteredCells);
+  }).toList();
 
-    FileSaveHelper.saveAndLaunchFile(
-        await plutoGridPdfExport.export(stateManager),
-        "Observatório de Acessibilidade ${DateTime.now().toIso8601String()}.pdf");
-  }
+  // Cria um novo StateManager com as colunas e linhas filtradas
+  final tempGridStateManager = PlutoGridStateManager(
+    columns: newColumns,
+    rows: newRows,
+    configuration: stateManager.configuration,
+     gridFocusNode: FocusNode(), scroll: PlutoGridScrollController()
+  );
+
+  var plutoGridPdfExport = PlutoGridDefaultPdfExport(
+    title: "Observatório de Acessibilidade",
+    creator: "Observatório de Acessibilidade",
+    format: PdfPageFormat.a3.landscape,
+    themeData: themeData,
+  );
+
+  FileSaveHelper.saveAndLaunchFile(
+    await plutoGridPdfExport.export(tempGridStateManager),
+    "Observatório de Acessibilidade ${DateTime.now().toIso8601String()}.pdf",
+  );
+}
+
 
 static void asExcel(PlutoGridStateManager stateManager) {
   // Exporta o conteúdo da tabela para CSV e converte para lista de listas.

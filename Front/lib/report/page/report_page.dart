@@ -165,7 +165,7 @@ class _ReportPageState extends State<ReportPage> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 12.0),
+                                const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Icon(
                               Icons.keyboard_arrow_right,
                               size: 20,
